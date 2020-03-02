@@ -1,0 +1,44 @@
+{% import "macros/flash.html" as flash with context %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel='stylesheet' href='/static/styles/vendor/bootstrap.min.css'>
+  <link rel="stylesheet" href="/static/styles/vendor/datatables.min.css"/>
+  <link rel="stylesheet" href="/static/styles/vendor/jquery.rateyo.css"/>
+  <link rel="stylesheet" href="/static/styles/vendor/card-js.min.css"/>
+  <link rel="stylesheet" href="/static/styles/vendor/font-awesome.min.css" />
+  <link rel="stylesheet" href="/static/styles/new.css" />
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  {% block header %}{% endblock %}
+
+  <!-- BEGIN BODY -->
+  <main class="container">
+    {{ flash.render() }}
+
+    <div class="md-margin-top">{% block heading %}{% endblock %}</div>
+    {% block body %}{% endblock %}
+  </main>
+  <!-- END BODY -->
+
+  <!-- BEGIN FOOTER -->
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline">
+        <li class="text-muted">Popzapp &copy; 2020</li>
+        {% block footer %}{% endblock %}
+      </ul>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+  <script src="/static/scripts/vendor/jquery.min.js"></script>
+  <script src="/static/scripts/vendor/popper.min.js"></script>
+  <script src="/static/scripts/vendor/datatables.min.js"></script>
+  <script src="/static/scripts/vendor/jquery.rateyo.js"></script>
+  <script src="/static/scripts/vendor/card-js.min.js"></script>
+  <script src="/static/scripts/vendor/bootstrap.min.js"></script>
+</body>
+</html>

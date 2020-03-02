@@ -1,0 +1,74 @@
+{% extends "layouts/app.html" %}
+
+{% block title %}
+	Home
+{% endblock %}
+
+{% block body %}
+	<div class="container fluid sm-margin-top">
+		<div class="row">
+			<div class="col-lg-12">
+				
+				{% if not cars %}
+					<div class="jumbotron jumbotron-fluid">
+            <p class="display-4">No cars</p>
+            <p class="lead">Add a car to make this page livelier</p>
+            <hr class="my-4" />
+            <button class="btn btn-lg btn-primary"
+            type="button"
+            data-toggle="modal"
+            data-target="#add-car-modal">
+              Add car
+            </button>
+          </div>
+        {% else %}
+        	<div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <table class="table">
+                	<thead>
+                		<tr>
+                			<th scope="col">Number</th>
+                			<th scope="col">Name</th>
+                			<th scope="col">Color</th>
+                		</tr>
+                	</thead>
+                  <tbody>
+                    {% for car in cars %}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>{{ car['name'] }}</td>
+                      <td>{{ car['color'] }}</td>
+                      <td>
+                        <form method="POST"
+                        action="{{url_for('car.delete', car_id=car['id'])}}">
+                          <button type="submit" class="btn btn-sm-btn-danger">
+                            Delete Car
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <button class="btn btn-sm btn-primary"
+                type="button"
+                data-toggle="modal"
+                data-target="#add-car-modal">
+                  Add car
+                </button>
+              </div>
+            </div>
+          </div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+{% include "modals/car/add_car_modal.html" %}
+
+{% endblock %}
